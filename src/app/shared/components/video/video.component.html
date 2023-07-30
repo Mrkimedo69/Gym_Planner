@@ -1,0 +1,15 @@
+
+      <section class="card card-info text-white bg-dark mb-3">
+        <section class="card-img-top">
+          <youtube-player
+            [videoId]="id"
+            (ready)="savePlayer($event)"
+            (change)="onStateChange($event)"
+            [playerVars]="playerVars">
+          </youtube-player>
+        </section>
+        <div class="card-body"></div>
+      </section>
+
+  
+  

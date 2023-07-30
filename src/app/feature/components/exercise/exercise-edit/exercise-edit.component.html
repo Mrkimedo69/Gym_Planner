@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="exerciseForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success" [disabled]="!exerciseForm.valid">
+            Save
+          </button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="patchExerciseValues()"
+            *ngIf="editMode"
+          >
+            Fill with data
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="exerciseName">Exercise Name</label>
+            <input
+              type="text"
+              id="exerciseName"
+              formControlName="exerciseName"
+              class="form-control"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="exerciseDescription">Exercise Description</label>
+            <textarea
+              type="text"
+              id="exerciseDescription"
+              class="form-control"
+              formControlName="exerciseDescription"
+              rows="6"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="exerciseImage">Exercise Image</label>
+            <input
+              type="text"
+              id="exerciseImage"
+              formControlName="exerciseImage"
+              class="form-control"
+              #exerciseImage
+            />
+          </div>
+        </div>
+      </div>
+      <div *ngIf="exerciseImage.value" class="row">
+        <div class="col-xs-12">
+          <img [src]="exerciseImage.value" class="img-responsive" width="150" height="150" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="exerciseVideo">Exercise Video</label>
+            <input
+              type="text"
+              id="exerciseVideo"
+              formControlName="exerciseVideo"
+              class="form-control"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+.custom-align-items-space-between{
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+}
+.custom-align-items-center{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.custom-align-text-center{
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    padding: 10px;
+}

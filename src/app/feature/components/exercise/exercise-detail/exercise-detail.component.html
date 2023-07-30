@@ -1,0 +1,32 @@
+<div *ngIf="isClicked">
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ exercise?.exerciseName }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="btn-group" appDropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle">
+        Manage Exercises <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a style="cursor: pointer" (click)="onAddTraining()">Add to Training</a></li>
+        <li><a style="cursor: pointer" (click)="onEditExercise()">Edit Exercise</a></li>
+        <li><a style="cursor: pointer" (click)="onDeleteExercise()">Delete Exercise</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <app-video width="700" height="500" [videoUrl]="exercise.exerciseVideo"></app-video>
+    <!-- <iframe width="700" height="500" [src]="exercise?.exerciseVideo | safe"> </iframe> -->
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    {{ exercise?.exerciseDescription }}
+  </div>
+</div>
+</div>

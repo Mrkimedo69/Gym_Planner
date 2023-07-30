@@ -1,0 +1,52 @@
+<div *ngIf="isClicked">
+<div class="row">
+  <div class="col-xs-12">
+    <img [src]="training?.trainingImage" class="img-responsive" style="max-height: 300px" />
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ training?.trainingName }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="btn-group" appDropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle">
+        Manage Training <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a style="cursor: pointer" (click)="addExercise()">Add Here Saved Exercise</a></li>
+        <li><a style="cursor: pointer" (click)="onEditTraining()">Edit Training</a></li>
+        <li><a style="cursor: pointer" (click)="onDeleteTraining()">Delete Training</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<br />
+<div class="list-group-item clearfix custom-align-items-space-between"
+*ngFor="let trainingEl of training.exercises">
+  <div class="pull-left w-50">  
+    <a
+  style="cursor: pointer; width: 450px; border: white"
+  routerLinkActive="active"
+  class="list-group-item clearfix"
+  (click)="redirectDetailsExercise(trainingEl.id)"
+>
+  <div>
+    <div class="pull-left">
+      <h4 class="list-group-item-heading custom-align-text-center">{{ trainingEl?.exerciseName }}</h4>
+    </div>
+    <span class="pull-right">
+      <img [src]="trainingEl?.exerciseImage" class="img-responsive" style="max-height: 50px" class="pull-right custom-align-items-center" />
+      
+    </span>
+  </div>
+</a>
+</div>
+<div>
+  <button (click)="deleteExercise(trainingEl.id)" class="pull-right btn-danger custom-align-items-center" style="height: 50px; width:50px;justify-content:center;">X</button>
+</div>
+
+</div>
+</div>
