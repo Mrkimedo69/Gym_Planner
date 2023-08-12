@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Exercise } from 'src/app/feature/models/exercises.model';
@@ -20,7 +20,8 @@ export class ExerciseDetailComponent implements OnInit, AfterViewChecked {
   constructor(private exerciseService: ExerciseService,
               private route: ActivatedRoute,
               private router: Router,
-              private exerciseToTrainingService :ExerciseToTrainingService) {
+              private exerciseToTrainingService :ExerciseToTrainingService,
+              private cdRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -43,6 +44,7 @@ export class ExerciseDetailComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked(){
     this.videoId = this.exercise.exerciseVideo.split('/watch?v=').pop();
     this.ytLink = 'https://www.youtube.com/embed/' + this.videoId
+    this.cdRef.detectChanges(); 
   }
 
   onAddTraining() {
