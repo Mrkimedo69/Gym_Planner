@@ -19,20 +19,26 @@ export class DataStorageService {
   ) {}
 
   storeExercises() {
-    const exercises = this.exerciseService.getExercises();
+    let exercises = this.exerciseService.getExercises();
+    if(exercises.length != 0){
     this.http
       .put(
         'https://gym-planner-34d64-default-rtdb.europe-west1.firebasedatabase.app/exerciseList.json',
         exercises
-      )
+      ).subscribe()
+    exercises = []
+      }
   }
   storeTrainings() {
-    const trainings = this.trainingService.getTrainings();
+    let trainings = this.trainingService.getTrainings();
+    if(trainings.length !=0){
     this.http
       .put(
         'https://gym-planner-34d64-default-rtdb.europe-west1.firebasedatabase.app/trainingList.json',
         trainings
-      )
+      ).subscribe()
+      trainings =[]
+    }
   }
 
   fetchExercises() {
