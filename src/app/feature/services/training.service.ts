@@ -26,8 +26,8 @@ export class TrainingService {
   }
 
   addTraining(training: Training) {
-    this.training?.push(training);
-    this.trainingChanged?.next(this.training.slice());
+    this.training.push(training);
+    this.trainingChanged.next(this.training.slice());
   }
 
   updateTraining(index: string, newTraining: Exercise) {
