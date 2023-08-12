@@ -20,8 +20,9 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <app-video width="700" height="500" [videoUrl]="exercise.exerciseVideo"></app-video>
-    <!-- <iframe width="700" height="500" [src]="exercise?.exerciseVideo | safe"> </iframe> -->
+    <iframe width="550" height="400" [src]="ytLink | safe" 
+    frameborder="0" 
+    allow="accelerometer"></iframe>
   </div>
 </div>
 <div class="row">
