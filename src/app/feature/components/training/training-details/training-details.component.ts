@@ -88,8 +88,10 @@ export class TrainingDetailsComponent {
   }
   redirectDetailsExercise(id:string){
     if(id === undefined){
-      this.dataStorageService.fetchExercises()
+      //TODO add snackbar
+    }else{
+      this.router.navigateByUrl("/exercises/"+id);
     }
-    this.router.navigateByUrl("/exercises/"+id);
+    
   }
 }

@@ -2,13 +2,13 @@
   style="cursor: pointer;"
   [routerLink]="[index]"
   routerLinkActive="active"
-  class="list-group-item clearfix">
+  class="list-group-item clearfix spacing list-hover">
   <div>
     <div class="pull-left">
-      <h4 class="list-group-item-heading">{{ training?.trainingName }}</h4>
+      <h3 class="list-group-item-heading custom-align-text-center">{{ training?.trainingName }}</h3>
     </div>
     <span class="pull-right">
-      <img [src]="training?.trainingImage" class="img-responsive" style="max-height: 50px" />
+      <img [src]="training?.trainingImage" class="img-responsive" style="height: 65px; width:100px;" />
     </span>
   </div>
 </a>
