@@ -3,13 +3,13 @@
     <form [formGroup]="exerciseForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-xs-12">
-          <button type="submit" class="btn btn-success" [disabled]="!exerciseForm.valid">
+          <button type="submit" class="btn btn-success button-spacing" [disabled]="!exerciseForm.valid">
             Save
           </button>
-          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+          <button type="button" class="btn btn-danger button-spacing-2" (click)="onCancel()">Cancel</button>
           <button
             type="button"
-            class="btn btn-primary"
+            class="btn btn-primary button-spacing-2"
             (click)="patchExerciseValues()"
             *ngIf="editMode"
           >
@@ -60,7 +60,7 @@
       </div>
       <div *ngIf="exerciseImage.value" class="row">
         <div class="col-xs-12">
-          <img [src]="exerciseImage.value" class="img-responsive" width="150" height="150" />
+          <img [src]="exerciseImage.value" class="img-responsive" width="150" max-height="150" />
         </div>
       </div>
       <div class="row">

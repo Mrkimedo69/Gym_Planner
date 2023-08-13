@@ -6,28 +6,30 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <div class="btn-group" appDropdown>
+    <div class="btn-group button-spacing" appDropdown>
       <button type="button" class="btn btn-primary dropdown-toggle">
         Manage Exercises <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li><a style="cursor: pointer" (click)="onAddTraining()">Add to Training</a></li>
-        <li><a style="cursor: pointer" (click)="onEditExercise()">Edit Exercise</a></li>
-        <li><a style="cursor: pointer" (click)="onDeleteExercise()">Delete Exercise</a></li>
+        <li><a class="list-hover" (click)="onAddTraining()">Add to Training</a></li>
+        <li><a class="list-hover" (click)="onEditExercise()">Edit Exercise</a></li>
+        <li><a class="list-hover" (click)="onDeleteExercise()">Delete Exercise</a></li>
       </ul>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-xs-12 custom-align-items-center spacing">
     <iframe width="550" height="400" [src]="ytLink | safe" 
     frameborder="0" 
-    allow="accelerometer"></iframe>
+    allow="accelerometer"
+    ></iframe>
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
-    {{ exercise?.exerciseDescription }}
+  <div class="col-xs-12 paragraph-box spacing">
+    <h3>Description</h3>
+    <span class="text-box">{{ exercise?.exerciseDescription }}</span>
   </div>
 </div>
 </div>
