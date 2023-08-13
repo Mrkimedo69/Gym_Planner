@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ChangeDetectorRef, NgZone } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Exercise } from 'src/app/feature/models/exercises.model';
@@ -21,7 +22,10 @@ export class ExerciseDetailComponent implements OnInit, AfterViewChecked {
               private route: ActivatedRoute,
               private router: Router,
               private exerciseToTrainingService :ExerciseToTrainingService,
-              private cdRef: ChangeDetectorRef) {
+              private cdRef: ChangeDetectorRef,
+              private snackBar: MatSnackBar,
+              private zone: NgZone,
+              ) {
   }
 
   ngOnInit() {
@@ -49,6 +53,12 @@ export class ExerciseDetailComponent implements OnInit, AfterViewChecked {
 
   onAddTraining() {
     this.exerciseToTrainingService.pullExercise(this.exercise)
+    this.zone.run(() => {
+      this.snackBar.open('Successful stored the exercise','',{
+      duration: 3000,
+      verticalPosition: 'top',
+    })
+  });
   }
 
   onEditExercise() {
@@ -58,6 +68,12 @@ export class ExerciseDetailComponent implements OnInit, AfterViewChecked {
   onDeleteExercise() {
     this.exerciseService.deleteExercise(this.id);
     this.router.navigate(['/exercises']);
+    this.zone.run(() => {
+      this.snackBar.open('Successful deleted the exercise','',{
+      duration: 3000,
+      verticalPosition: 'top',
+    })
+  });
   }
 
 }

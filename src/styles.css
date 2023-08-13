@@ -1,8 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 /* * { border: 0.5px solid lightslategray; } */
-*{
-    font-size: 1.625rem;
-  }
 .spacing{
     margin:1rem;
 }
@@ -65,3 +62,5 @@ img{
     font-size: medium;
     font-weight: 500;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

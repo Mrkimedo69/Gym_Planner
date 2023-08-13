@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Exercise } from 'src/app/feature/models/exercises.model';
 import { Training } from 'src/app/feature/models/training.model';
 import { ExerciseToTrainingService } from 'src/app/feature/services/exerciseToTraining.service';
 import { TrainingService } from 'src/app/feature/services/training.service';
-import { DataStorageService } from 'src/app/shared/services/data-storage.service';
-
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-training-details',
@@ -23,7 +22,8 @@ export class TrainingDetailsComponent {
               private route: ActivatedRoute,
               private router: Router,
               private exerciseToTrainingService: ExerciseToTrainingService,
-              private dataStorageService:DataStorageService,
+              private snackBar: MatSnackBar,
+              private zone: NgZone,
               ) {
   }
 
@@ -61,12 +61,24 @@ export class TrainingDetailsComponent {
           this.router.navigate(['/training']);
         }
       )
+      this.zone.run(() => {
+        this.snackBar.open('Successful deleted the training','',{
+        duration: 3000,
+        verticalPosition: 'top',
+      })
+    });
 
   }
 
   addExercise(){
     if(this.exerciseToTrainingService.pushToTraining()){
       this.training.exercises.push(this.exerciseToTrainingService.pushToTraining())
+      this.zone.run(() => {
+        this.snackBar.open('Successful added exercise','',{
+        duration: 3000,
+        verticalPosition: 'top',
+      })
+    });
     }
     if(this.training.exercises.length === 0){
       this.listCounter+1;
@@ -77,6 +89,12 @@ export class TrainingDetailsComponent {
   }
 
   deleteExercise(id:string){
+    this.zone.run(() => {
+      this.snackBar.open('Successful deleted the exercise','',{
+      duration: 3000,
+      verticalPosition: 'top',
+    })
+  });
     this.exerciseList.every((element,index)=>{
       if(element.id === id){
         this.exerciseList.splice(index,1)
@@ -88,7 +106,12 @@ export class TrainingDetailsComponent {
   }
   redirectDetailsExercise(id:string){
     if(id === undefined){
-      //TODO add snackbar
+      this.zone.run(() => {
+        this.snackBar.open('Something went wrong','',{
+          duration: 4000,
+          verticalPosition: 'top',
+        })
+    });
     }else{
       this.router.navigateByUrl("/exercises/"+id);
     }

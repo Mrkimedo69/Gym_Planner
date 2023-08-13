@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { FeaturesModule } from './feature/feature.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { FeaturesModule } from './feature/feature.module';
     FeaturesModule,
     SharedModule,
     CoreModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent],
 })
