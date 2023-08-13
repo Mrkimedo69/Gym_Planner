@@ -7,6 +7,7 @@ import { PlaceholderDirective } from './directives/placeholder.directive';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { LoggingService } from '../core/services/logging.service';
 import { SafePipe } from './pipes/safeulr.pipe';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { SafePipe } from './pipes/safeulr.pipe';
     LoadingSpinnerComponent,
     PlaceholderDirective,
     DropdownDirective,
-    SafePipe
+    SafePipe,
   ],
   exports: [
     AlertComponent,
@@ -22,7 +23,10 @@ import { SafePipe } from './pipes/safeulr.pipe';
     PlaceholderDirective,
     DropdownDirective,
     CommonModule,
-    SafePipe
+    SafePipe,
+  ],
+  imports:[
+    MatSnackBarModule
   ],
   entryComponents: [AlertComponent],
   providers: [LoggingService]
