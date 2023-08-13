@@ -4,6 +4,7 @@ import { Exercise } from 'src/app/feature/models/exercises.model';
 import { Training } from 'src/app/feature/models/training.model';
 import { ExerciseToTrainingService } from 'src/app/feature/services/exerciseToTraining.service';
 import { TrainingService } from 'src/app/feature/services/training.service';
+import { DataStorageService } from 'src/app/shared/services/data-storage.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class TrainingDetailsComponent {
   constructor(private trainingService: TrainingService,
               private route: ActivatedRoute,
               private router: Router,
-              private exerciseToTrainingService: ExerciseToTrainingService
+              private exerciseToTrainingService: ExerciseToTrainingService,
+              private dataStorageService:DataStorageService,
               ) {
   }
 
@@ -41,6 +43,8 @@ export class TrainingDetailsComponent {
       );
       if(this.training.exercises){
         this.exerciseList = this.training.exercises
+      }else{
+        this.training.exercises = []
       }
   }
 
@@ -61,7 +65,9 @@ export class TrainingDetailsComponent {
   }
 
   addExercise(){
-    this.training.exercises.push(this.exerciseToTrainingService.pushToTraining())
+    if(this.exerciseToTrainingService.pushToTraining()){
+      this.training.exercises.push(this.exerciseToTrainingService.pushToTraining())
+    }
     if(this.training.exercises.length === 0){
       this.listCounter+1;
     }else{
@@ -71,10 +77,19 @@ export class TrainingDetailsComponent {
   }
 
   deleteExercise(id:string){
-  let listId = this.exerciseList.find(e => e.id===id).id;
-  this.exerciseList.splice(+listId,1)
+    this.exerciseList.every((element,index)=>{
+      if(element.id === id){
+        this.exerciseList.splice(index,1)
+        return false && this.exerciseList
+      }else{
+        return true && this.exerciseList
+      }
+    })
   }
   redirectDetailsExercise(id:string){
+    if(id === undefined){
+      this.dataStorageService.fetchExercises()
+    }
     this.router.navigateByUrl("/exercises/"+id);
   }
 }
