@@ -9,7 +9,7 @@
     <h1>{{ training?.trainingName }}</h1>
   </div>
 </div>
-<div class="row">
+<div *ngIf="isAuthenticated" class="row">
   <div class="col-xs-12">
     <div class="btn-group button-spacing" appDropdown>
       <button type="button" class="btn btn-primary dropdown-toggle">
@@ -44,7 +44,7 @@
   </div>
 </a>
 </div>
-<div>
+<div *ngIf="isAuthenticated">
   <button (click)="deleteExercise(trainingEl.id)" class="pull-right btn-danger custom-align-items-center" style="height: 50px; width:50px;justify-content:center;">X</button>
 </div>
 

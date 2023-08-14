@@ -5,6 +5,8 @@ import { Training } from 'src/app/feature/models/training.model';
 import { ExerciseToTrainingService } from 'src/app/feature/services/exerciseToTraining.service';
 import { TrainingService } from 'src/app/feature/services/training.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-training-details',
@@ -17,6 +19,8 @@ export class TrainingDetailsComponent {
   isClicked: boolean = false;
   exerciseList: Exercise[] = []
   listCounter: string = '0';
+  isAuthenticated = false;
+  userSub: Subscription;
 
   constructor(private trainingService: TrainingService,
               private route: ActivatedRoute,
@@ -24,6 +28,7 @@ export class TrainingDetailsComponent {
               private exerciseToTrainingService: ExerciseToTrainingService,
               private snackBar: MatSnackBar,
               private zone: NgZone,
+              private authService: AuthService
               ) {
   }
 
@@ -46,6 +51,9 @@ export class TrainingDetailsComponent {
       }else{
         this.training.exercises = []
       }
+      this.userSub = this.authService.user.subscribe(user => {
+        this.isAuthenticated = !!user;
+      });
   }
 
   onEditTraining() {
