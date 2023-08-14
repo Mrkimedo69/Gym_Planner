@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/Gym_Planner",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
