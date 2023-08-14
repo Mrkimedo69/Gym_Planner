@@ -1,6 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { ExerciseService } from 'src/app/feature/services/exercises.service';
 import { Exercise } from 'src/app/feature/models/exercises.model';
@@ -40,7 +40,7 @@ export class ExerciseEditComponent implements OnInit {
       this.exerciseService.updateExercise(this.id, this.exerciseForm.value);
       this.zone.run(() => {
         this.snackBar.open('Successful updated the exercise','',{
-        duration: 3000,
+        duration: 2000,
         verticalPosition: 'top',
         panelClass:['success']
       })
@@ -49,7 +49,7 @@ export class ExerciseEditComponent implements OnInit {
       this.exerciseService.addExercise(this.exerciseForm.value);
       this.zone.run(() => {
         this.snackBar.open('Successful added a new exercise','',{
-        duration: 3000,
+        duration: 2000,
         verticalPosition: 'top',
         panelClass:['success']
       })

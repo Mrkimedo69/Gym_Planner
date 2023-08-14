@@ -55,7 +55,7 @@ export class ExerciseDetailComponent implements OnInit, AfterViewChecked {
     this.exerciseToTrainingService.pullExercise(this.exercise)
     this.zone.run(() => {
       this.snackBar.open('Successful stored the exercise','',{
-      duration: 3000,
+      duration: 2000,
       verticalPosition: 'top',
       panelClass:['success']
     })
@@ -71,7 +71,7 @@ export class ExerciseDetailComponent implements OnInit, AfterViewChecked {
     this.router.navigate(['/exercises']);
     this.zone.run(() => {
       this.snackBar.open('Successful deleted the exercise','',{
-      duration: 3000,
+      duration: 2000,
       verticalPosition: 'top',
       panelClass:['success']
     })

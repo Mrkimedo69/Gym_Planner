@@ -44,7 +44,7 @@ export class TrainingEditComponent implements OnInit {
       this.trainingService.updateTraining(this.id, this.trainingForm.value);
       this.zone.run(() => {
         this.snackBar.open('Successful updated the training','',{
-        duration: 3000,
+        duration: 2000,
         verticalPosition: 'top',
         panelClass:['success']
       })
@@ -53,7 +53,7 @@ export class TrainingEditComponent implements OnInit {
       this.trainingService.addTraining(this.trainingForm.value);
       this.zone.run(() => {
         this.snackBar.open('Successful added a new training','',{
-        duration: 3000,
+        duration: 2000,
         verticalPosition: 'top',
         panelClass:['success']
       })

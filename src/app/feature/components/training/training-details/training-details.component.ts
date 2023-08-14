@@ -4,7 +4,7 @@ import { Exercise } from 'src/app/feature/models/exercises.model';
 import { Training } from 'src/app/feature/models/training.model';
 import { ExerciseToTrainingService } from 'src/app/feature/services/exerciseToTraining.service';
 import { TrainingService } from 'src/app/feature/services/training.service';
-import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-training-details',
@@ -63,7 +63,7 @@ export class TrainingDetailsComponent {
       )
       this.zone.run(() => {
         this.snackBar.open('Successful deleted the training','',{
-        duration: 3000,
+        duration: 2000,
         verticalPosition: 'top',
         panelClass:['success']
       })
@@ -76,7 +76,7 @@ export class TrainingDetailsComponent {
       this.training.exercises.push(this.exerciseToTrainingService.pushToTraining())
       this.zone.run(() => {
         this.snackBar.open('Successful added exercise','',{
-        duration: 3000,
+        duration: 2000,
         verticalPosition: 'top',
         panelClass:['success']
       })
@@ -93,7 +93,7 @@ export class TrainingDetailsComponent {
   deleteExercise(id:string){
     this.zone.run(() => {
       this.snackBar.open('Successful deleted the exercise','',{
-      duration: 3000,
+      duration: 2000,
       verticalPosition: 'top',
       panelClass:['success']
     })
