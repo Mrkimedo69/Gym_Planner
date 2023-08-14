@@ -1,5 +1,8 @@
 import { Component, OnInit, AfterViewChecked, ChangeDetectorRef, NgZone } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarModule,
+  MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Action } from 'rxjs/internal/scheduler/Action';
 
@@ -18,13 +21,15 @@ export class ExerciseDetailComponent implements OnInit, AfterViewChecked {
   videoId:string | undefined;
   ytLink:string;
   isClicked: boolean = false;
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
 
   constructor(private exerciseService: ExerciseService,
               private route: ActivatedRoute,
               private router: Router,
               private exerciseToTrainingService :ExerciseToTrainingService,
               private cdRef: ChangeDetectorRef,
-              private snackBar: MatSnackBar,
+              private _snackBar: MatSnackBar,
               private zone: NgZone,
               ) {
   }
@@ -42,12 +47,12 @@ export class ExerciseDetailComponent implements OnInit, AfterViewChecked {
           }
         }
       );
-      this.videoId = this.exercise.exerciseVideo.split('/watch?v=').pop();
+      this.videoId = this.exercise.exerciseVideo.split('/watch?v=').pop()!;
       this.ytLink = 'https://www.youtube.com/embed/'+ this.videoId
       
   }
   ngAfterViewChecked(){
-    this.videoId = this.exercise.exerciseVideo.split('/watch?v=').pop();
+    this.videoId = this.exercise.exerciseVideo.split('/watch?v=').pop()!;
     this.ytLink = 'https://www.youtube.com/embed/' + this.videoId
     this.cdRef.detectChanges(); 
   }
@@ -55,7 +60,7 @@ export class ExerciseDetailComponent implements OnInit, AfterViewChecked {
   onAddTraining() {
     this.exerciseToTrainingService.pullExercise(this.exercise)
     this.zone.run(() => {
-      this.snackBar.open('Successful stored the exercise','',{
+      this._snackBar.open('Successful stored the exercise','',{
       duration: 3000,
       verticalPosition: 'top',
     })
@@ -68,11 +73,11 @@ export class ExerciseDetailComponent implements OnInit, AfterViewChecked {
 
   onDeleteExercise() {
     this.exerciseService.deleteExercise(this.id);
-    this.router.navigate(['/exercises']);
+    this.router.navigate(['/exercises']); 
     this.zone.run(() => {
-      this.snackBar.open('Successful deleted the exercise','',{
-      duration: 3000,
+      this._snackBar.open('Successful deleted the exercise','',{
       verticalPosition: 'top',
+      panelClass:['blue-snackbar']
     })
   });
   }
