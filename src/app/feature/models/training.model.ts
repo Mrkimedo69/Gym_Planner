@@ -4,7 +4,5 @@ export interface Training{
     exercises: Exercise [],
     id: string,
     trainingName: string,
-    trainingImage: string,
-    setCount?: number,
-    repCount?: number
+    trainingImage: string
 }

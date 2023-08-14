@@ -7,8 +7,7 @@ import { PlaceholderDirective } from './directives/placeholder.directive';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { LoggingService } from '../core/services/logging.service';
 import { SafePipe } from './pipes/safeulr.pipe';
-import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
-import { VideoComponent } from './components/video/video.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -17,9 +16,7 @@ import { VideoComponent } from './components/video/video.component';
     PlaceholderDirective,
     DropdownDirective,
     SafePipe,
-    VideoComponent
   ],
-  imports: [CommonModule,NgxYoutubePlayerModule.forRoot()],
   exports: [
     AlertComponent,
     LoadingSpinnerComponent,
@@ -27,7 +24,9 @@ import { VideoComponent } from './components/video/video.component';
     DropdownDirective,
     CommonModule,
     SafePipe,
-    VideoComponent
+  ],
+  imports:[
+    MatSnackBarModule
   ],
   entryComponents: [AlertComponent],
   providers: [LoggingService]

@@ -9,7 +9,7 @@ import { Exercise } from 'src/app/feature/models/exercises.model';
 })
 export class ExerciseItemComponent implements OnInit {
   @Input() exercise: Exercise;
-  @Input() index: number;
+  @Input() index: string;
 
   ngOnInit() {
   }

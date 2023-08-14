@@ -1,5 +1,6 @@
 import {
   Component,
+  NgZone,
   OnInit
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -7,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TrainingService } from '../../../services/training.service';
 import { Training } from 'src/app/feature/models/training.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-training-edit',
@@ -20,7 +22,14 @@ export class TrainingEditComponent implements OnInit {
   editedItemIndex: string;
   editedItem: Training;
 
-  constructor(private fb: FormBuilder,private route: ActivatedRoute,private trainingService: TrainingService,private router: Router,) { }
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private trainingService: TrainingService,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private zone: NgZone,
+    ) { }
 
   ngOnInit() {
     this.initForm()
@@ -33,8 +42,22 @@ export class TrainingEditComponent implements OnInit {
   onSubmit() {
     if (this.editMode) {
       this.trainingService.updateTraining(this.id, this.trainingForm.value);
+      this.zone.run(() => {
+        this.snackBar.open('Successful updated the training','',{
+        duration: 2000,
+        verticalPosition: 'top',
+        panelClass:['success']
+      })
+    });
     } else {
       this.trainingService.addTraining(this.trainingForm.value);
+      this.zone.run(() => {
+        this.snackBar.open('Successful added a new training','',{
+        duration: 2000,
+        verticalPosition: 'top',
+        panelClass:['success']
+      })
+    });
     }
     this.onCancel();
   }

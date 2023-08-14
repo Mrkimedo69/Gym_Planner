@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Exercise } from 'src/app/feature/models/exercises.model';
 import { Training } from 'src/app/feature/models/training.model';
 import { ExerciseToTrainingService } from 'src/app/feature/services/exerciseToTraining.service';
 import { TrainingService } from 'src/app/feature/services/training.service';
-
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-training-details',
@@ -21,7 +21,9 @@ export class TrainingDetailsComponent {
   constructor(private trainingService: TrainingService,
               private route: ActivatedRoute,
               private router: Router,
-              private exerciseToTrainingService: ExerciseToTrainingService
+              private exerciseToTrainingService: ExerciseToTrainingService,
+              private snackBar: MatSnackBar,
+              private zone: NgZone,
               ) {
   }
 
@@ -41,6 +43,8 @@ export class TrainingDetailsComponent {
       );
       if(this.training.exercises){
         this.exerciseList = this.training.exercises
+      }else{
+        this.training.exercises = []
       }
   }
 
@@ -57,11 +61,27 @@ export class TrainingDetailsComponent {
           this.router.navigate(['/training']);
         }
       )
+      this.zone.run(() => {
+        this.snackBar.open('Successful deleted the training','',{
+        duration: 2000,
+        verticalPosition: 'top',
+        panelClass:['success']
+      })
+    });
 
   }
 
   addExercise(){
-    this.training.exercises.push(this.exerciseToTrainingService.pushToTraining())
+    if(this.exerciseToTrainingService.pushToTraining()){
+      this.training.exercises.push(this.exerciseToTrainingService.pushToTraining())
+      this.zone.run(() => {
+        this.snackBar.open('Successful added exercise','',{
+        duration: 2000,
+        verticalPosition: 'top',
+        panelClass:['success']
+      })
+    });
+    }
     if(this.training.exercises.length === 0){
       this.listCounter+1;
     }else{
@@ -71,10 +91,34 @@ export class TrainingDetailsComponent {
   }
 
   deleteExercise(id:string){
-  let listId = this.exerciseList.find(e => e.id===id).id;
-  this.exerciseList.splice(+listId,1)
+    this.zone.run(() => {
+      this.snackBar.open('Successful deleted the exercise','',{
+      duration: 2000,
+      verticalPosition: 'top',
+      panelClass:['success']
+    })
+  });
+    this.exerciseList.every((element,index)=>{
+      if(element.id === id){
+        this.exerciseList.splice(index,1)
+        return false && this.exerciseList
+      }else{
+        return true && this.exerciseList
+      }
+    })
   }
   redirectDetailsExercise(id:string){
-    this.router.navigateByUrl("/exercises/"+id);
+    if(id === undefined){
+      this.zone.run(() => {
+        this.snackBar.open('Something went wrong','',{
+          duration: 4000,
+          verticalPosition: 'top',
+          panelClass:['warning']
+        })
+    });
+    }else{
+      this.router.navigateByUrl("/exercises/"+id);
+    }
+    
   }
 }

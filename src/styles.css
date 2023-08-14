@@ -1,1 +1,81 @@
 /* You can add global styles to this file, and also import other style files */
+/* * { border: 0.5px solid lightslategray; } */
+.spacing{
+    margin:1rem;
+}
+.spacing-top{
+    margin-top: 4.25rem;
+}
+.list-hover:hover{
+    cursor: pointer;
+    color: lightblue;
+    background-color: lightblue !important;
+    border-color: lightblue;
+}
+.list-hover-parent:hover .list-hover-child{
+    cursor: pointer;
+    color: lightblue;
+    background-color: lightblue !important;
+    border-color: lightblue;
+}
+.list-hover-child{
+    
+}
+.custom-align-items-space-between{
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+}
+.custom-align-items-center{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.custom-align-text-center{
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    padding: 10px;
+}
+
+img{
+    border:lightgrey 0.1px solid ;
+}
+.button-spacing{
+    margin: 1rem;
+    margin-left: 0;
+}
+.button-spacing-2{
+    margin: 1rem;
+}
+.paragraph-box{
+    border:lightgrey 0.1px solid ;
+    width: 100%;
+    padding: 4rem;
+    padding-top: 0.5rem;
+}
+.text-box{
+    width: 100%;
+    padding: 0.5rem;
+    display: inline-flex;
+    text-align: justify;
+    font-size: medium;
+    font-weight: 500;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-mdc-snack-bar-container {
+    &.success {
+      --mdc-snackbar-container-color: #A4FF90;
+      --mat-mdc-snack-bar-button-color: #000;
+      --mdc-snackbar-supporting-text-color: #000;
+    }
+  }
+  .mat-mdc-snack-bar-container {
+    &.warning {
+      --mdc-snackbar-container-color: #FF5A5A;
+      --mat-mdc-snack-bar-button-color: #fff;
+      --mdc-snackbar-supporting-text-color: #fff;
+    }
+  }
