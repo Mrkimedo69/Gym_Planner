@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewChecked, ChangeDetectorRef, NgZone } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 import { Exercise } from 'src/app/feature/models/exercises.model';
 import { ExerciseToTrainingService } from 'src/app/feature/services/exerciseToTraining.service';
@@ -14,7 +15,7 @@ import { ExerciseService } from 'src/app/feature/services/exercises.service';
 export class ExerciseDetailComponent implements OnInit, AfterViewChecked {
   exercise: Exercise;
   id: string;
-  videoId:string;
+  videoId:string | undefined;
   ytLink:string;
   isClicked: boolean = false;
 

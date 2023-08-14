@@ -21,7 +21,7 @@ export class ExerciseService {
   }
 
   getExercise(index: string) {
-    return this.exercise[index];
+    return this.exercise[+index];
   }
 
   addExercise(exercise: Exercise) {
@@ -30,7 +30,7 @@ export class ExerciseService {
   }
 
   updateExercise(index: string, newExercise: Exercise) {
-    this.exercise[index] = newExercise;
+    this.exercise[+index] = newExercise;
     this.exerciseChanged.next(this.exercise.slice());
   }
 

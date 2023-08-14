@@ -18,11 +18,11 @@ export class TrainingService {
   }
 
   getTrainings() {
-    return this.training?.slice();
+    return this.training.slice();
   }
 
   getTraining(index: string) {
-    return this.training[index];
+    return this.training[+index];
   }
 
   addTraining(training: Training) {
@@ -30,9 +30,9 @@ export class TrainingService {
     this.trainingChanged.next(this.training.slice());
   }
 
-  updateTraining(index: string, newTraining: Exercise) {
-    this.training[index] = newTraining;
-    this.trainingChanged?.next(this.training.slice());
+  updateTraining(index: string, newTraining: Training) {
+    this.training[+index] = newTraining;
+    this.trainingChanged.next(this.training.slice());
   }
 
   deleteTraining(index: string) {

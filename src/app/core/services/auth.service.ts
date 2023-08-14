@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
-import { throwError, BehaviorSubject } from 'rxjs';
+import { throwError, BehaviorSubject, ReplaySubject } from 'rxjs';
 
 import { User } from '../models/user.model';
 import { environment } from 'src/environments/environment';
@@ -19,7 +19,7 @@ export interface AuthResponseData {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  user = new BehaviorSubject<User>(null);
+  user = new ReplaySubject<User>();
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -73,10 +73,10 @@ export class AuthService {
   autoLogin() {
     const userData: {
       email: string;
-      id: string;
+      id: string ;
       _token: string;
-      _tokenExpirationDate: string;
-    } = JSON.parse(localStorage.getItem('userData'));
+      _tokenExpirationDate: Date ;
+    } = JSON.parse(localStorage.getItem('userData')|| '{}');
     if (!userData) {
       return;
     }
@@ -98,7 +98,7 @@ export class AuthService {
   }
 
   logout() {
-    this.user.next(null);
+    this.user.next({} as User);
     this.router.navigate(['/auth']);
     localStorage.removeItem('userData');
     if (this.tokenExpirationTimer) {

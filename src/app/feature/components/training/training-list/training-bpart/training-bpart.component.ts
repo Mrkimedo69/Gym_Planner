@@ -24,7 +24,7 @@ export class TrainingBpartComponent implements OnInit {
   ngOnInit(){
     this.trainingService.getTrainings()
   }
-  redirectDetailsTraining(id){
+  redirectDetailsTraining(id:string){
     this.router.navigateByUrl("/training/"+id);
   }
 }
