@@ -65,17 +65,13 @@ img{
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.mat-mdc-snack-bar-container {
-    &.success {
+.success {
       --mdc-snackbar-container-color: #A4FF90;
       --mat-mdc-snack-bar-button-color: #000;
       --mdc-snackbar-supporting-text-color: #000;
     }
-  }
-  .mat-mdc-snack-bar-container {
-    &.warning {
+.warning {
       --mdc-snackbar-container-color: #FF5A5A;
       --mat-mdc-snack-bar-button-color: #fff;
       --mdc-snackbar-supporting-text-color: #fff;
     }
-  }
