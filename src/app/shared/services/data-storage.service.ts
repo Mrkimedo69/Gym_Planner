@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, tap, take, exhaustMap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { map, tap } from 'rxjs/operators';
 
 
 import { AuthService } from '../../core/services/auth.service';
@@ -62,7 +62,7 @@ export class DataStorageService {
       )
       .pipe(
         map(exercises => {
-          for(var e in exercises){          
+          for(let e in exercises){          
             exercises[e].id = e
           }
           return exercises.map(exercise => {
