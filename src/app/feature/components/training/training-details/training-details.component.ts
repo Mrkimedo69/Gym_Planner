@@ -65,6 +65,7 @@ export class TrainingDetailsComponent {
         this.snackBar.open('Successful deleted the training','',{
         duration: 3000,
         verticalPosition: 'top',
+        panelClass:['success']
       })
     });
 
@@ -77,6 +78,7 @@ export class TrainingDetailsComponent {
         this.snackBar.open('Successful added exercise','',{
         duration: 3000,
         verticalPosition: 'top',
+        panelClass:['success']
       })
     });
     }
@@ -93,6 +95,7 @@ export class TrainingDetailsComponent {
       this.snackBar.open('Successful deleted the exercise','',{
       duration: 3000,
       verticalPosition: 'top',
+      panelClass:['success']
     })
   });
     this.exerciseList.every((element,index)=>{
@@ -110,6 +113,7 @@ export class TrainingDetailsComponent {
         this.snackBar.open('Something went wrong','',{
           duration: 4000,
           verticalPosition: 'top',
+          panelClass:['warning']
         })
     });
     }else{

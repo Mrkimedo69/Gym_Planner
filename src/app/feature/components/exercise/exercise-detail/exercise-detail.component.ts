@@ -57,6 +57,7 @@ export class ExerciseDetailComponent implements OnInit, AfterViewChecked {
       this.snackBar.open('Successful stored the exercise','',{
       duration: 3000,
       verticalPosition: 'top',
+      panelClass:['success']
     })
   });
   }
@@ -72,6 +73,7 @@ export class ExerciseDetailComponent implements OnInit, AfterViewChecked {
       this.snackBar.open('Successful deleted the exercise','',{
       duration: 3000,
       verticalPosition: 'top',
+      panelClass:['success']
     })
   });
   }

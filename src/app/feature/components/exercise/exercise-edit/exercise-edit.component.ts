@@ -42,6 +42,7 @@ export class ExerciseEditComponent implements OnInit {
         this.snackBar.open('Successful updated the exercise','',{
         duration: 3000,
         verticalPosition: 'top',
+        panelClass:['success']
       })
     });
     } else {
@@ -50,6 +51,7 @@ export class ExerciseEditComponent implements OnInit {
         this.snackBar.open('Successful added a new exercise','',{
         duration: 3000,
         verticalPosition: 'top',
+        panelClass:['success']
       })
     });
     }

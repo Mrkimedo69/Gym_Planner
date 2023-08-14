@@ -32,6 +32,7 @@ export class DataStorageService {
         this.snackBar.open('Successful stored all exercises','',{
         duration: 3000,
         verticalPosition: 'top',
+        panelClass:['success']
       })
     });
     exercises = []
@@ -49,6 +50,7 @@ export class DataStorageService {
         this.snackBar.open('Successful stored all trainings','',{
         duration: 3000,
         verticalPosition: 'top',
+        panelClass:['success']
       })
     });
       trainings =[]
@@ -77,6 +79,7 @@ export class DataStorageService {
             this.snackBar.open('Successful fetched all exercises','',{
             duration: 3000,
             verticalPosition: 'top',
+            panelClass:['success']
           })
         });
         })
@@ -101,6 +104,7 @@ export class DataStorageService {
             this.snackBar.open('Successful fetched all trainings','',{
             duration: 3000,
             verticalPosition: 'top',
+            panelClass:['success']
           })
         });
         })

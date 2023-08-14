@@ -46,6 +46,7 @@ export class TrainingEditComponent implements OnInit {
         this.snackBar.open('Successful updated the training','',{
         duration: 3000,
         verticalPosition: 'top',
+        panelClass:['success']
       })
     });
     } else {
@@ -54,6 +55,7 @@ export class TrainingEditComponent implements OnInit {
         this.snackBar.open('Successful added a new training','',{
         duration: 3000,
         verticalPosition: 'top',
+        panelClass:['success']
       })
     });
     }
