@@ -1,9 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, tap, take, exhaustMap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { map, tap } from 'rxjs/operators';
 
-
-import { AuthService } from '../../core/services/auth.service';
 import { Exercise } from 'src/app/feature/models/exercises.model';
 import { ExerciseService } from 'src/app/feature/services/exercises.service';
 import { TrainingService } from 'src/app/feature/services/training.service';
@@ -30,7 +28,7 @@ export class DataStorageService {
       ).subscribe()
       this.zone.run(() => {
         this.snackBar.open('Successful stored all exercises','',{
-        duration: 3000,
+        duration: 2000,
         verticalPosition: 'top',
         panelClass:['success']
       })
@@ -48,7 +46,7 @@ export class DataStorageService {
       ).subscribe()
       this.zone.run(() => {
         this.snackBar.open('Successful stored all trainings','',{
-        duration: 3000,
+        duration: 2000,
         verticalPosition: 'top',
         panelClass:['success']
       })
@@ -64,7 +62,7 @@ export class DataStorageService {
       )
       .pipe(
         map(exercises => {
-          for(var e in exercises){          
+          for(let e in exercises){          
             exercises[e].id = e
           }
           return exercises.map(exercise => {
@@ -77,7 +75,7 @@ export class DataStorageService {
           this.exerciseService.setExercises(exercises);
           this.zone.run(() => {
             this.snackBar.open('Successful fetched all exercises','',{
-            duration: 3000,
+            duration: 2000,
             verticalPosition: 'top',
             panelClass:['success']
           })
@@ -102,7 +100,7 @@ export class DataStorageService {
           this.trainingService.setTrainings(trainings);
           this.zone.run(() => {
             this.snackBar.open('Successful fetched all trainings','',{
-            duration: 3000,
+            duration: 2000,
             verticalPosition: 'top',
             panelClass:['success']
           })
