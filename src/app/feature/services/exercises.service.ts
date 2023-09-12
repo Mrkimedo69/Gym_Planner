@@ -13,11 +13,11 @@ export class ExerciseService {
 
   setExercises(exercises: Exercise[]) {
     this.exercise = exercises;
-    this.exerciseChanged.next(this.exercise.slice());
+    this.exerciseChanged.next(this.exercise?.slice());
   }
 
   getExercises() {
-    return this.exercise.slice();
+    return this.exercise?.slice();
   }
 
   getExercise(index: string) {
@@ -31,11 +31,11 @@ export class ExerciseService {
 
   updateExercise(index: string, newExercise: Exercise) {
     this.exercise[index] = newExercise;
-    this.exerciseChanged.next(this.exercise.slice());
+    this.exerciseChanged.next(this.exercise?.slice());
   }
 
   deleteExercise(index: string) {
-    this.exercise.splice(+index, 1);
-    this.exerciseChanged.next(this.exercise.slice());
+    this.exercise?.splice(+index, 1);
+    this.exerciseChanged.next(this.exercise?.slice());
   }
 }

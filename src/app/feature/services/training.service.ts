@@ -32,11 +32,11 @@ export class TrainingService {
 
   updateTraining(index: string, newTraining: Exercise) {
     this.training[index] = newTraining;
-    this.trainingChanged?.next(this.training.slice());
+    this.trainingChanged?.next(this.training?.slice());
   }
 
   deleteTraining(index: string) {
     this.training?.splice(+index, 1);
-    this.trainingChanged?.next(this.training.slice());
+    this.trainingChanged?.next(this.training?.slice());
   }
 }

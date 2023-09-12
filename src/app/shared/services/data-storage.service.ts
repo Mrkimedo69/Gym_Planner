@@ -68,7 +68,7 @@ export class DataStorageService {
           for(let e in exercises){          
             exercises[e].id = e
           }
-          return exercises.map(exercise => {
+          return exercises?.map(exercise => {
             return {
               ...exercise          
             };
@@ -76,13 +76,23 @@ export class DataStorageService {
         }),
         tap(exercises => {
           this.exerciseService.setExercises(exercises);
-          this.zone.run(() => {
-            this.snackBar.open('Successful fetched all exercises','',{
-            duration: 2000,
-            verticalPosition: 'top',
-            panelClass:['success']
-          })
-        });
+          if(exercises){
+            this.zone.run(() => {
+              this.snackBar.open('Successful fetched all exercises','',{
+              duration: 2000,
+              verticalPosition: 'top',
+              panelClass:['success']
+            })
+          });
+          }else{
+            this.zone.run(() => {
+              this.snackBar.open('You do not have any saved data','',{
+              duration: 2000,
+              verticalPosition: 'top',
+              panelClass:['warning']
+            })
+          });
+          }
         })
       );
   }
@@ -101,13 +111,24 @@ export class DataStorageService {
         }),
         tap(trainings => {
           this.trainingService.setTrainings(trainings);
-          this.zone.run(() => {
-            this.snackBar.open('Successful fetched all trainings','',{
-            duration: 2000,
-            verticalPosition: 'top',
-            panelClass:['success']
-          })
-        });
+          if(trainings){
+            this.zone.run(() => {
+              this.snackBar.open('Successful fetched all trainings','',{
+              duration: 2000,
+              verticalPosition: 'top',
+              panelClass:['success']
+            })
+          });
+          }else{
+            this.zone.run(() => {
+              this.snackBar.open('You do not have any saved data','',{
+              duration: 2000,
+              verticalPosition: 'top',
+              panelClass:['warning']
+            })
+          });
+          }
+
         })
       );
   }

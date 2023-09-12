@@ -46,7 +46,7 @@ export class TrainingDetailsComponent {
           }
         }
       );
-      if(this.training.exercises){
+      if(this.training?.exercises){
         this.exerciseList = this.training.exercises
       }else{
         this.training.exercises = []
