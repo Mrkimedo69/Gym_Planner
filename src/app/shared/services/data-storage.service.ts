@@ -7,15 +7,18 @@ import { ExerciseService } from 'src/app/feature/services/exercises.service';
 import { TrainingService } from 'src/app/feature/services/training.service';
 import { Training } from 'src/app/feature/models/training.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
+  uid:string =''
   constructor(
     private http: HttpClient,
     private exerciseService: ExerciseService,
     private trainingService: TrainingService,
     private snackBar: MatSnackBar,
     private zone: NgZone,
+    private auth: AuthService
   ) {}
 
   storeExercises() {
@@ -23,7 +26,7 @@ export class DataStorageService {
     if(exercises.length != 0){
     this.http
       .put(
-        'https://gym-planner-34d64-default-rtdb.europe-west1.firebasedatabase.app/exerciseList.json',
+        'https://gym-planner-34d64-default-rtdb.europe-west1.firebasedatabase.app/'+ this.auth.user.value.id+'/exerciseList.json/',
         exercises
       ).subscribe()
       this.zone.run(() => {
@@ -34,14 +37,14 @@ export class DataStorageService {
       })
     });
     exercises = []
-      }
+      }  
   }
   storeTrainings() {
     let trainings = this.trainingService.getTrainings();
     if(trainings.length !=0){
     this.http
       .put(
-        'https://gym-planner-34d64-default-rtdb.europe-west1.firebasedatabase.app/trainingList.json',
+        'https://gym-planner-34d64-default-rtdb.europe-west1.firebasedatabase.app/'+this.auth.user.value.id+'/trainingList.json/',
         trainings
       ).subscribe()
       this.zone.run(() => {
@@ -58,7 +61,7 @@ export class DataStorageService {
   fetchExercises() {
     return this.http
       .get<Exercise[]>(
-        'https://gym-planner-34d64-default-rtdb.europe-west1.firebasedatabase.app/exerciseList.json'
+        'https://gym-planner-34d64-default-rtdb.europe-west1.firebasedatabase.app/'+this.auth.user.value.id+'/exerciseList.json'
       )
       .pipe(
         map(exercises => {
@@ -86,7 +89,7 @@ export class DataStorageService {
     fetchTrainings() {
     return this.http
       .get<Training[]>(
-        'https://gym-planner-34d64-default-rtdb.europe-west1.firebasedatabase.app/trainingList.json'
+        'https://gym-planner-34d64-default-rtdb.europe-west1.firebasedatabase.app/'+this.auth.user.value.id+'/trainingList.json'
       )
       .pipe(
         map(trainings => {
